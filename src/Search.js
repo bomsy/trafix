@@ -25,7 +25,7 @@ class Search extends Component {
     this.input = ReactDOM.findDOMNode(this.refs.locsearch);
     this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('text-field-search'));
     this.searchBox = new google.maps.places.SearchBox(this.input);
-    //this.autocomplete.bindTo('bounds', this.props.map);
+    this.autocomplete.bindTo('bounds', this.props.map);
     this.autocomplete.addListener('place_changed', this.handlePlaceChanged);
     this.searchBox.addListener('places_changed', this.handlePlacesChanged);
   };

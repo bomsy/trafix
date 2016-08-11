@@ -62,6 +62,12 @@ class App extends Component {
       paddingLeft: '40px'
     };
 
+    const appIconStyle = {
+      fontSize: '48px',
+      paddingTop: '8px',
+      color: '#fff'
+    };
+
     const listIconStyle = {
       fontSize: '24px'
     };
@@ -106,7 +112,7 @@ class App extends Component {
       <div className="App">
         <AppBar
           titleStyle={titleStyle}
-          title="trafix"
+          title={<FontIcon style={appIconStyle} className="material-icons">bubble_chart</FontIcon>}
           iconElementLeft={
             <IconButton onClick={this.handleToggleMenu}>
               <FontIcon style={iconStyle} className="material-icons">menu</FontIcon>
@@ -149,7 +155,7 @@ class App extends Component {
         </Drawer>
         <Dialog
           bodyStyle={dialogStyle}
-          modal={true}
+          onRequestClose={this.handleToggleSearch}
           open={this.state.showSearch}>
           <Search map={this.state.map} onPlaceChanged={this.handlePlaceChanged}/>
         </Dialog>
