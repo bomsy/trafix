@@ -1,7 +1,8 @@
 import './Map.css';
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-
+import SocketClient from 'socket.io-client';
+let io = SocketClient();
 class Map extends Component {
   static propTypes = {
     location: React.PropTypes.array,
