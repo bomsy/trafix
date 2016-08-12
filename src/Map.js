@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import SocketClient from 'socket.io-client';
 let io = SocketClient();
+
 class Map extends Component {
   static propTypes = {
     location: React.PropTypes.array,
@@ -40,8 +41,9 @@ class Map extends Component {
 
   render() {
     const mapStyle = {
-      width: '320px',
-      height: '500px',
+      width: '100%',
+      height: '100%',
+      position: 'fixed',
       zIndex: '-10'
     }
     return (
