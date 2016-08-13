@@ -1,7 +1,9 @@
-import './Map.css';
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import SocketClient from 'socket.io-client';
+
+import Beacon from './Beacon.js';
+
 let io = SocketClient();
 
 class Map extends Component {
@@ -12,30 +14,24 @@ class Map extends Component {
   };
   state = {
     center: [ 60.938043, 30.337157 ],
-    zoom: 15,
-  };
-
-  componentDidMount() {
-    this.setState({ center: this.state.center });
+    zoom: 18,
+    beacons: [] // traffic beacons updated in realtime from the server
   };
 
   componentWillReceiveProps(nextProps) {
     this.setState({ center: nextProps.location });
   };
 
-  handleMapLoaded = ({map, maps}) => {
+  handleMapLoaded = ({ map, maps }) => {
     if (this.props.onMapLoaded) {
-      this.props.onMapLoaded({map, maps});
+      this.props.onMapLoaded({ map, maps });
     }
   };
 
-  handleChange = ({center, zoom}) => {
-    this.setState({
-      center: center,
-      zoom: zoom,
-    });
+  handleChange = ({ center, zoom , bounds }) => {
+    this.setState({ center: center, zoom: zoom, bounds: bounds });
     if (this.props.onLocationChange) {
-      this.props.onLocationChange(this.state.center);
+      this.props.onLocationChange(this.state.center, this.state.bounds);
     }
   };
 
@@ -54,6 +50,7 @@ class Map extends Component {
         onChange={this.handleChange}
         center={this.state.center}
         zoom={this.state.zoom}>
+        <Beacon lat={this.state.center[0]} lng={this.state.center[1]}></Beacon>
       </GoogleMapReact>
       </div>
     );
