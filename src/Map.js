@@ -13,7 +13,7 @@ class Map extends Component {
     onMapLoaded: React.PropTypes.func
   };
   state = {
-    center: [ 60.938043, 30.337157 ],
+    center: {lat: 60.938043, lng: 30.337157 },
     zoom: 18,
     beacons: [] // traffic beacons updated in realtime from the server
   };
@@ -42,6 +42,7 @@ class Map extends Component {
       position: 'fixed',
       zIndex: '-10'
     }
+
     return (
       <div style={mapStyle}>
        <GoogleMapReact
@@ -50,7 +51,7 @@ class Map extends Component {
         onChange={this.handleChange}
         center={this.state.center}
         zoom={this.state.zoom}>
-        <Beacon lat={this.state.center[0]} lng={this.state.center[1]}></Beacon>
+        <Beacon lat={this.state.center.lat} lng={this.state.center.lng}></Beacon>
       </GoogleMapReact>
       </div>
     );

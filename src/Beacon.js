@@ -16,7 +16,9 @@ class Beacon extends Component {
       height: '15px',
       opacity: '0.5 '
     };
-    return ( <div style={beaconStyle}></div> );
+    return (
+      <div style={beaconStyle}></div>
+    );
   }
 }
 

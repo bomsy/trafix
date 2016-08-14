@@ -17,7 +17,7 @@ class App extends Component {
   state = {
     openMenu: false,
     showSearch: false,
-    location: [60.938043, 30.337157],
+    location: { lat: 60.938043, lng: 30.337157 },
     map: null
   }
 
